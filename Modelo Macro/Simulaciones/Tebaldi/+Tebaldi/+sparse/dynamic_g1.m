@@ -1,0 +1,59 @@
+function [g1, T_order, T] = dynamic_g1(y, x, params, steady_state, sparse_rowval, sparse_colval, sparse_colptr, T_order, T)
+if nargin < 9
+    T_order = -1;
+    T = NaN(14, 1);
+end
+[T_order, T] = Tebaldi.sparse.dynamic_g1_tt(y, x, params, steady_state, T_order, T);
+g1_v = NaN(46, 1);
+g1_v(1)=(-(1-params(3)));
+g1_v(2)=(-(1+params(9)*T(10)));
+g1_v(3)=(-(params(11)*1/y(14)));
+g1_v(4)=1;
+g1_v(5)=(-((1-params(1))/y(24)));
+g1_v(6)=1;
+g1_v(7)=T(13);
+g1_v(8)=(-((-(T(12)*T(13)))/(T(1)*T(1))));
+g1_v(9)=(-1);
+g1_v(10)=(-(T(4)*y(28)*y(20)*getPowerDeriv(y(17),params(1),1)));
+g1_v(11)=(-(T(5)*getPowerDeriv(y(17),params(1)-1,1)));
+g1_v(12)=1;
+g1_v(13)=(-(y(28)*y(20)));
+g1_v(14)=(-T(9));
+g1_v(15)=1;
+g1_v(16)=1;
+g1_v(17)=(-(T(3)*getPowerDeriv(y(19),1-params(1),1)));
+g1_v(18)=1;
+g1_v(19)=(-((-((-params(5))*(-(getPowerDeriv(1-y(19),(-params(7)),1)))))/T(1)));
+g1_v(20)=(-(T(4)*y(28)*T(2)));
+g1_v(21)=(-(y(28)*y(17)));
+g1_v(22)=1;
+g1_v(23)=(-(T(10)*y(26)*params(9)));
+g1_v(24)=(-(y(24)*(-T(7))/(y(21)*y(21))*getPowerDeriv(T(7)/y(21),1/(1-params(1)),1)));
+g1_v(25)=(-(y(17)*(1-params(1))*getPowerDeriv(1+y(21),1-params(8),1)/params(1)));
+g1_v(26)=(-T(11));
+g1_v(27)=1;
+g1_v(28)=1;
+g1_v(29)=1;
+g1_v(30)=(-1);
+g1_v(31)=(-1);
+g1_v(32)=(-((-(y(15)*(1-params(1))))/(y(24)*y(24))));
+g1_v(33)=(-(T(6)*params(1)*getPowerDeriv(y(24),1-params(1),1)));
+g1_v(34)=(-T(8));
+g1_v(35)=(-1);
+g1_v(36)=(-1);
+g1_v(37)=1;
+g1_v(38)=(-(T(10)*y(20)*params(9)));
+g1_v(39)=1;
+g1_v(40)=(-(T(4)*y(20)*T(2)));
+g1_v(41)=(-(y(20)*y(17)));
+g1_v(42)=(-(y(6)*params(9)*T(14)));
+g1_v(43)=(-(y(20)*y(26)*params(9)*T(14)));
+g1_v(44)=1/y(28);
+g1_v(45)=(-((y(21)+1-params(3))*params(2)*params(4)*getPowerDeriv(y(30),(-params(6)),1)));
+g1_v(46)=(-1);
+if ~isoctave && matlab_ver_less_than('9.8')
+    sparse_rowval = double(sparse_rowval);
+    sparse_colval = double(sparse_colval);
+end
+g1 = sparse(sparse_rowval, sparse_colval, g1_v, 14, 43);
+end
