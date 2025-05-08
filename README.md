@@ -1,4 +1,4 @@
-# Tesis
+# Thesis
 
 This Git repository contains all the data and processes related to my final work for my bachelor's degree. The research focuses on innovation and institutional quality, primarily from the perspective of evolutionary economics. All rights are reserved by Universidad Católica de Cuyo.
 
